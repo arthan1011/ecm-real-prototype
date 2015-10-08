@@ -1,0 +1,160 @@
+html, body {
+    height: 100%;
+    margin: 0 5px;
+    padding: 0;
+}
+
+.hidden {
+    opacity: 0;
+    display: none;
+}
+
+#main {
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+#tree > table {
+    text-align: left;
+}
+
+#tree {
+    max-height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#items {
+    width: 50%;
+    float: left;
+}
+
+#preview {
+    width: 50%;
+    float: right;
+    height: 100%;
+}
+
+#actionMenuBar button {
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    margin: 6px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#actionMenuBar button[disabled=disabled] {
+    opacity: .15;
+}
+
+.ADD {
+    background-image: url("../images/buttons/add.png");
+}
+
+.ADDFOLDER {
+    background-image: url("../images/buttons/addfolder.png");
+}
+
+.ADDLINK {
+    background-image: url("../images/buttons/addlink.png");
+}
+
+.CANCEL_CHECKOUT {
+    background-image: url("../images/buttons/cancel_checkout.png");
+}
+
+.CHECKIN {
+    background-image: url("../images/buttons/checkin.png");
+}
+
+.CHECKOUT {
+    background-image: url("../images/buttons/checkout.png");
+}
+
+.DELETE {
+    background-image: url("../images/buttons/delete.png");
+}
+
+.EDIT {
+    background-image: url("../images/buttons/edit.png");
+}
+
+.FOLDER {
+    background-image: url("../images/buttons/folder.png");
+}
+
+.PROP {
+    background-image: url("../images/buttons/prop.png");
+}
+
+.REPORTS {
+    background-image: url("../images/buttons/reports.png");
+}
+
+.RESCAN {
+    background-image: url("../images/buttons/rescan.png");
+}
+
+.SCANADD {
+    background-image: url("../images/buttons/scanadd.png");
+}
+
+.SEARCH {
+    background-image: url("../images/buttons/search.png");
+}
+
+.SIGNATURE {
+    background-image: url("../images/buttons/signature.png");
+}
+
+#tree tr td:first-child > div {
+    padding: 1px 0;
+    background-image: url("../images/mime/FolderIcon16x16.png");
+    background-repeat: no-repeat;
+    background-position: 0 30%;
+    padding-left: 20px;
+    display: inline;
+    height: 16px;
+}
+
+tr[mime="application/pdf"] td:first-child > div {
+    background-image: url("../images/mime/pdficon_small.png") !important;
+}
+
+.table_head {
+    background-color: black !important;
+    color: #fff !important;
+}
+
+#dialog-form label {
+    display: block;
+}
+
+#dialog-form label.error {
+    display: none !important;
+}
+
+.error {
+    border: 1px red solid;
+}
+
+#dialog-form {
+    max-height: 100%;
+    /*height: inherit !important;*/
+}
+
+.properties-table {
+    width: 100%;
+}
+
+.properties-table td {
+    text-align: left;
+}
+
+.properties-table td input[type="text"] {
+    width: 100%;
+}  

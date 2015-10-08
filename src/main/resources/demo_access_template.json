@@ -1,0 +1,167 @@
+{
+  "searchTypes": [
+    "BankAccountContract",
+    "CertificateOfTheStageRegistration",
+    "OrganizationChart"
+  ],
+  "searchPaths": [
+    "/ББМО"
+  ],
+  "gridColumns": [
+    {
+      "propertyName": "DocumentTitle",
+      "labelText": "Имя",
+      "widthPct": "60"
+    },
+    {
+      "propertyName": "size",
+      "labelText": "Размер",
+      "widthPct": "20"
+    },
+    {
+      "propertyName": "checked",
+      "labelText": "Проверен?",
+      "widthPct": "20"
+    }
+  ],
+  "foldersConfiguration": [
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "CertificateOfRegistrationWithTheTaxAuthority",
+          "displayName": "Свидетельство или Уведомление о постановке на учет в налоговом органе.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Общие/Свидетельство или Уведомление о постановке на учет в налоговом органе/Свидетельство или Уведомление о постановке на учет в налоговом органе.2015.03.14"
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "CertificateOfTheStageRegistration",
+          "displayName": "Свидетельство о государственной регистрации.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Общие/Свидетельство о государственной регистрации/Свидетельство о государственной регистрации.2015.03.14"
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "Charter",
+          "displayName": "Устав.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Общие/Устав/Устав.2015.03.14"
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "Memorandum",
+          "displayName": "Учредительный договор.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Общие/Учредительный договор/Учредительный договор.2015.03.14"
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "ApplicationForOpeningABankAccount",
+          "displayName": "Заявление об открытии банковского счета.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Счета/Счет № 40702810102100141398/Заявление об открытии банковского счета/Заявление об открытии банковского счета.2015.03.14"
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ",
+        "EDIT_DOCUMENT_PROP",
+        "EDIT_CONTENT_VERSION",
+        "EDIT_CONTENT",
+        "DELETE_DOCUMENT",
+        "ADD_LINK",
+        "DELETE_LINK",
+        "SIGN_DOCUMENT"
+      ],
+      "allowedClasses": [
+        {
+          "name": "cardOfSpecimenSignaturesAndStamps",
+          "displayName": "Карточка образцов подписей и оттисков печатей.2015.03.14"
+        }
+      ],
+      "folderPath": "ГКХ/Действующий/ПРОМОТХОДЫ.ООО.7722737438.772201001/ЮД/Счета/Счет № 40702810102100141398/Карточка образцов подписей и оттисков печатей/Карточка образцов подписей и оттисков печатей.2015.03.14"
+    }
+  ],
+  "availableReports": [],
+  "functionButtons": [
+    "ADD",
+    "EDIT",
+    "PROP",
+    "SIGNATURE",
+    "SCANADD",
+    "RESCAN",
+    "CHECKOUT",
+    "CANCEL_CHECKOUT",
+    "CHECKIN",
+    "ADDFOLDER",
+    "ADDLINK",
+    "DELETE",
+    "PRINT",
+    "SEARCH",
+    "REPORTS"
+  ]
+}

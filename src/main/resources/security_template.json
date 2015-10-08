@@ -1,0 +1,67 @@
+{
+  "searchTypes": [
+    "SearchType1",
+    "SearchType2"
+  ],
+  "searchPaths": [
+    "SearchPath1",
+    "SearchPath2",
+    "SearchPath3"
+  ],
+  "gridColumns": [
+    {
+      "propertyName": "DocumentTitle",
+      "labelText": "Имя",
+      "widthPct": "60"
+    },
+    {
+      "propertyName": "checked",
+      "labelText": "Проверен",
+      "widthPct": "40"
+    }
+  ],
+  "functionButtons": [
+    "ADD",
+    "CHECKOUT"
+  ],
+  "availableReports": [
+    "Report1",
+    "Report2"
+  ],
+  "foldersConfiguration": [
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ"
+      ],
+      "folderPath": "Документы",
+      "allowedClasses": [
+        {
+          "name": "BankAccountContract",
+          "displayName": "Договор банковского счета"
+        },
+        {
+          "name": "CertificateOfTheStageRegistration",
+          "displayName": "Свидетельство о государственной регистрации"
+        }
+      ]
+    },
+    {
+      "permissions": [
+        "ADD_DOCUMENT",
+        "READ"
+      ],
+      "folderPath": "Документы/Договоры и уставы",
+      "allowedClasses": [
+        {
+          "name": "BankAccountContract",
+          "displayName": "Договор банковского счета"
+        },
+        {
+          "name": "CertificateOfTheStageRegistration",
+          "displayName": "Свидетельство о государственной регистрации"
+        }
+      ]
+    }
+  ]
+}

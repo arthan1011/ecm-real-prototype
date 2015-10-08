@@ -1,0 +1,44 @@
+<Root>
+    <FunctionButtons>
+        <ButtonName>AddDocument</ButtonName>
+        <ButtonName>CheckoutDocument</ButtonName>
+    </FunctionButtons>
+    <SearchTypes>
+        <TypeName>Contract</TypeName>
+        <TypeName>Invoice</TypeName>
+    </SearchTypes>
+    <SeatchPaths>
+        <Path>/Documents/Invoices</Path>
+        <Path>/Documents/Contracts</Path>
+    </SeatchPaths>
+    <AvailableReports>
+        <ReportName>InvoiceCountForPeriod</ReportName>
+    </AvailableReports>
+    <FolderAccessConfig>
+        <Folder>
+            <FolderPath>/Documents</FolderPath>
+            <FolderPermissionList>
+                <Permission>ADD_DOCUMENT</Permission>
+                <Permission>READ</Permission>
+                <Permission>ADD_FOLDER</Permission>
+            </FolderPermissionList>
+        </Folder>
+        <Folder>
+            <FolderPath>/Documents/Invoices</FolderPath>
+            <FolderPermissionList>
+                <Permission>READ</Permission>
+                <Permission>ADD_LINK</Permission>
+            </FolderPermissionList>
+        </Folder>
+    </FolderAccessConfig>
+    <GridColumnSet>
+        <Column>
+            <PropertyName>DocumentTitle</PropertyName>
+            <LabelText>Название документа</LabelText>
+        </Column>
+        <Column>
+            <PropertyName>DocumentSize</PropertyName>
+            <LabelText>Размер документа</LabelText>
+        </Column>
+    </GridColumnSet>
+</Root>

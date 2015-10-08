@@ -1,0 +1,549 @@
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+POST /webapi/acquireTicket
+Request:
+  {
+    "rootFolderPath": "/BBMO",
+    "extSystemId": "extSystenUd",
+    "username": "user",
+    "accessTemplateName": "editor"
+  }
+Response:
+  {
+  "result": {
+    "ticket": "14989235809880983"
+  },
+  "error": null
+}
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET  /webapi/ui/gridcolumns
+Headers:
+  ECM-Ticket: <С‚РёРєРµС‚>
+Response:
+  {
+  "result": [
+    {
+      "labelText": "Р�РјСЏ",
+      "propertyName": "Name",
+      "widthPct": "60"
+    },
+    {
+      "labelText": "Р Р°Р·РјРµСЂ",
+      "propertyName": "size",
+      "widthPct": "40"
+    }
+  ],
+  "error": null
+  } 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET  /webapi/ui/hierarchy
+Headers:
+  ECM-Ticket: <С‚РёРєРµС‚>
+Response:
+ {
+  "result": {
+    "properties": [
+      {
+        "name": "id",
+        "value": "{20BB404F-0000-C81E-B5F4-377829FCF899}",
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      },
+      {
+        "name": "name",
+        "value": "Р”РѕРєСѓРјРµРЅС‚С‹",
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      },
+      {
+        "name": "type",
+        "value": "РџР°РїРєР°",
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      },
+      {
+        "name": "path",
+        "value": "/Р‘Р‘РњРћ/Р”РѕРєСѓРјРµРЅС‚С‹",
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      }
+    ],
+    "subfolders": [
+      {
+        "properties": [
+          {
+            "name": "id",
+            "value": "{00B9404F-0000-C91A-9786-8372D1457064}",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "name",
+            "value": "Р”РѕРіРѕРІРѕСЂС‹ Рё СѓСЃС‚Р°РІС‹",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "type",
+            "value": "РџР°РїРєР°",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "path",
+            "value": "/Р‘Р‘РњРћ/Р”РѕРєСѓРјРµРЅС‚С‹/Р”РѕРіРѕРІРѕСЂС‹ Рё СѓСЃС‚Р°РІС‹",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          }
+        ],
+        "subfolders": [],
+        "documents": [
+          {
+            "properties": [
+              {
+                "name": "ID",
+                "value": "{0E84CE52-58E2-4325-9334-C9212610AAAA}",
+                "type": "STRING",
+                "defaultValue": null,
+                "readOnly": false,
+                "hidden": false,
+                "displayName": null,
+                "description": null,
+                "required": false
+              },
+              {
+                "name": "name",
+                "value": "Pearson VUE - M2180-716.pdf",
+                "type": "STRING",
+                "defaultValue": null,
+                "readOnly": false,
+                "hidden": false,
+                "displayName": null,
+                "description": null,
+                "required": false
+              },
+              {
+                "name": "mime",
+                "value": "application/pdf",
+                "type": "STRING",
+                "defaultValue": null,
+                "readOnly": false,
+                "hidden": false,
+                "displayName": null,
+                "description": null,
+                "required": false
+              },
+              {
+                "name": "type",
+                "value": "Р”РѕРіРѕРІРѕСЂ Р±Р°РЅРєРѕРІСЃРєРѕРіРѕ СЃС‡РµС‚Р°",
+                "type": "STRING",
+                "defaultValue": null,
+                "readOnly": false,
+                "hidden": false,
+                "displayName": null,
+                "description": null,
+                "required": false
+              },
+              {
+                "name": "checked",
+                "value": "null",
+                "type": "BOOLEAN",
+                "defaultValue": null,
+                "readOnly": false,
+                "hidden": false,
+                "displayName": null,
+                "description": null,
+                "required": false
+              }
+            ],
+            "className": null,
+            "content": null
+          }
+        ]
+      },
+      {
+        "properties": [
+          {
+            "name": "id",
+            "value": "{50B9404F-0000-C51A-B6E3-01C4DE31980B}",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "name",
+            "value": "РЎРІРёРґРµР»СЊСЃС‚РІРѕ Рѕ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРё",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "type",
+            "value": "РџР°РїРєР°",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          },
+          {
+            "name": "path",
+            "value": "/Р‘Р‘РњРћ/Р”РѕРєСѓРјРµРЅС‚С‹/РЎРІРёРґРµР»СЊСЃС‚РІРѕ Рѕ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРё",
+            "type": "STRING",
+            "defaultValue": null,
+            "readOnly": false,
+            "hidden": false,
+            "displayName": null,
+            "description": null,
+            "required": false
+          }
+        ],
+        "subfolders": [],
+        "documents": []
+      }
+    ],
+    "documents": []
+  },
+  "error": null
+}
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET  /webapi/ui/buttons
+Headers:
+  ECM-Ticket: <тикет>
+Response:
+  {
+  "result": [
+    "ADD",
+    "CHECKIN"
+  ],
+  "error": null
+  }   
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+POST /documents
+Request:
+ {
+  "folderPath": "/BBMO/Folder1",
+  "document": {
+    "properties": [
+      {
+        "name": "Pname1",
+        "value": "value1",
+        "type": "Ptype1",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      },
+      {
+        "name": "Pname2",
+        "value": "value2",
+        "type": "Ptype2",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": null,
+        "description": null,
+        "required": false
+      }
+    ],
+    "className": "EGRUL",
+    "content": {
+      "base64Content": "base64content",
+      "mimeType": "application/pdf",
+      "contentName": "C2070-981.pdf"
+    }
+  }
+}
+
+
+Response:
+  {
+  "result": "created",
+  "error": null
+  } 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET  /documents/{docId}/content
+Response:
+  {
+  "result": "okspokpog0K",
+  "error": null
+  }
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET  /documents/{docId}/properties
+Response:
+  {
+  "result": [
+    {
+      "name": "DocumentTitle",
+      "value": "РљСЂРµРґРёС‚РЅС‹Р№ РїСЂРѕС†РµСЃСЃ_10.07.2015_12-40_",
+      "type": "STRING",
+      "defaultValue": null,
+      "readOnly": false,
+      "hidden": false,
+      "displayName": "Р—Р°РіРѕР»РѕРІРѕРє РґРѕРєСѓРјРµРЅС‚Р°",
+      "description": "Р—Р°РіРѕР»РѕРІРѕРє РґРѕРєСѓРјРµРЅС‚Р°",
+      "required": false
+    },
+    {
+      "name": "type",
+      "value": "Р•РґРёРЅС‹Р№ РіСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ СЂРµРµСЃС‚СЂ СЋСЂРёРґРёС‡РµСЃРєРёС… Р»РёС†",
+      "type": "STRING",
+      "defaultValue": null,
+      "readOnly": false,
+      "hidden": false,
+      "displayName": "РўРёРї",
+      "description": "type",
+      "required": false
+    },
+    {
+      "name": "Date",
+      "value": "1240516800000",
+      "type": "DATE",
+      "defaultValue": null,
+      "readOnly": false,
+      "hidden": false,
+      "displayName": "Р”Р°С‚Р°",
+      "description": "Р”Р°С‚Р°",
+      "required": false
+    },
+    {
+      "name": "primaryRegistartionNumber",
+      "value": "1097746010559",
+      "type": "STRING",
+      "defaultValue": null,
+      "readOnly": false,
+      "hidden": false,
+      "displayName": "РћСЃРЅРѕРІРЅРѕР№ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ",
+      "description": "primaryRegistartionNumber",
+      "required": false
+    },
+    {
+      "name": "registartionNumber",
+      "value": "1097746010559",
+      "type": "STRING",
+      "defaultValue": null,
+      "readOnly": false,
+      "hidden": false,
+      "displayName": "Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ",
+      "description": "registartionNumber",
+      "required": false
+    }
+  ],
+  "error": null
+  }
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET /webapi/classes?folderPath=/root/Documents
+Headers:
+  ECM-Ticket: <тикет>
+Response:
+  {
+    "result": [
+      {
+        "name": "BankAccountContract",
+        "displayName": "Договор банковского счета"
+      },
+      {
+        "name": "CertificateOfTheStageRegistration",
+        "displayName": "Свидетельство о государственной регистрации"
+      }
+    ],
+    "error": null
+  }
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET webapi/classes/{className}/properties
+Response:
+  {
+    "result": [
+      {
+        "name": "DocumentTitle",
+        "value": null,
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Заголовок документа",
+        "description": "Заголовок документа",
+        "required": false
+      },
+      {
+        "name": "InterestChargeAlgo",
+        "value": null,
+        "type": "LONG",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Алгоритм начисления процентов",
+        "description": "Алгоритм начисления процентов",
+        "required": false
+      },
+      {
+        "name": "IsSettlementForIncompleteSettlementPeriod",
+        "value": null,
+        "type": "BOOLEAN",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Расчет за неполный расчетный период",
+        "description": "Расчет за неполный расчетный период",
+        "required": false
+      },
+      {
+        "name": "FoundationForOpening",
+        "value": null,
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Основание открытия",
+        "description": "Основание открытия",
+        "required": false
+      },
+      {
+        "name": "UserContractType",
+        "value": null,
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Пользовательский тип договора",
+        "description": "Пользовательский тип договора",
+        "required": false
+      },
+      {
+        "name": "PhoneNumber1",
+        "value": null,
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Телефон 1",
+        "description": "Телефон 1",
+        "required": false
+      },
+      {
+        "name": "PhoneNumber2",
+        "value": null,
+        "type": "STRING",
+        "defaultValue": null,
+        "readOnly": false,
+        "hidden": false,
+        "displayName": "Телефон 2",
+        "description": "Телефон 2",
+        "required": false
+      }
+    ],
+    "error": null
+  }
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+GET /permissions?folderPath=<путь до папки>
+Headers:
+  ECM-Ticket: <тикет>
+Response:
+  {
+    "result": [
+      "ADD_DOCUMENT",
+      "READ"
+    ],
+    "error": null
+  }
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+DELETE webapi/documents/{docId}
+@PathParam(docId)
+
+Response:
+  {
+    "result": [
+      "deleted"
+    ],
+    "error": null
+  }
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  PUT /documents/{docId}
+  Request:
+   {
+    "document": {
+      "properties": [
+        {
+          "name": "Pname1",
+          "value": "value1",
+          "type": "Ptype1",
+          "defaultValue": null,
+          "readOnly": false,
+          "hidden": false,
+          "displayName": null,
+          "description": null,
+          "required": false
+        },
+        {
+          "name": "Pname2",
+          "value": "value2",
+          "type": "Ptype2",
+          "defaultValue": null,
+          "readOnly": false,
+          "hidden": false,
+          "displayName": null,
+          "description": null,
+          "required": false
+        }
+      ]
+    }
+  }
+
+
+  Response:
+    {
+    "result": "updated",
+    "error": null
+    }
