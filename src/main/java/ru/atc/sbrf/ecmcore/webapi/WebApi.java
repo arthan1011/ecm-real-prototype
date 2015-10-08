@@ -1,7 +1,14 @@
 package ru.atc.sbrf.ecmcore.webapi;
 
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.exceptions.COSVisitorException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.codehaus.jackson.map.ObjectMapper;
 import ru.atc.sbrf.ecmcore.domain.UserSession;
 import ru.atc.sbrf.ecmcore.message.Response;
@@ -16,6 +23,7 @@ import ru.atc.sbrf.ecmcore.service.UserSessionService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
@@ -196,6 +204,34 @@ public class WebApi {
     } catch (Exception e) {
       return doResponse("getClassProperties", String.format("className:%s", className), null, "Ошибка получения классов из папки", e);
     }
+  }
+
+  @GET
+  @Path("/download")
+  public javax.ws.rs.core.Response getPDF() throws IOException, COSVisitorException {
+
+    PDDocument pdDocument = new PDDocument();
+    PDPage page = new PDPage();
+    pdDocument.addPage(page);
+
+    PDFont font = PDType1Font.HELVETICA_BOLD;
+
+    PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+    contentStream.beginText();
+    contentStream.setFont( font, 12 );
+    contentStream.moveTextPositionByAmount( 100, 700 );
+    contentStream.drawString( "Hello World" );
+    contentStream.endText();
+    contentStream.close();
+
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    pdDocument.save("new.pdf");
+    pdDocument.save(out);
+    pdDocument.close();
+
+    return javax.ws.rs.core.Response.ok(Base64.encodeBase64String(out.toByteArray()))
+            .build();
   }
 
 

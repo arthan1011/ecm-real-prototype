@@ -37,12 +37,13 @@ function DoneFunctions() {
   };
 
   this.buildActionMenuBar = function (data) {
+    console.log(data);
     var actions = data;
     var actionMenuBar = $('#actionMenuBar');
     for (var i = 0; i < actions.length; i++) {
       var button = $('<button/>', {
         'type': 'button',
-        'disabled': 'disabled',
+        //'disabled': 'disabled',
         'class': actions[i],
         'data-action': actions[i],
         'title': actions[i]

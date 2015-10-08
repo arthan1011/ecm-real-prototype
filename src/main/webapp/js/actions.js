@@ -173,6 +173,27 @@ function Actions() {
 
   };
 
+  this.REPORTS = function () {
+    var $formContainer = $('#' + DIALOG_FORM);
+    var dialog = $formContainer.dialog({
+      title: 'Документ по шаблону',
+      width: '40%',
+      modal: true,
+      buttons: {
+        "Download": function() {
+          $.ajax({
+            method: "GET",
+            url: properties.host + "/webapi/download"
+          }).success(function(data) {
+            alert(data);
+            var $embed = $('<embed>', {width: '100%', height: '100%', src: "data:application/pdf;base64," + data});
+            $formContainer.append($embed);
+          });
+        }
+      }
+    });
+  };
+
   function _addDataToSerializedArray(form, data, attrName) {
 
     for (var i = 0; i < data.length; i++) {
