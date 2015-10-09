@@ -10,12 +10,15 @@ import com.filenet.api.core.*;
 import com.filenet.api.exception.EngineRuntimeException;
 import com.filenet.api.exception.ExceptionCode;
 import com.filenet.api.util.UserContext;
+import org.apache.log4j.Logger;
 
 import javax.security.auth.Subject;
 import java.util.Iterator;
 
 
 public class CeHelper {
+
+  private static Logger LOGGER = Logger.getLogger(CeHelper.class);
 
 
   public static Connection createConnection(String uri, String login, String password) {
@@ -116,7 +119,7 @@ public class CeHelper {
     return folder;
   }
 
-  private Folder instantiateFolder(ObjectStore os, Folder parent, String name) {
+  private static Folder instantiateFolder(ObjectStore os, Folder parent, String name) {
     Folder folder = null;
     try {
       folder = Factory.Folder.createInstance(os, null);
@@ -131,9 +134,15 @@ public class CeHelper {
       }
 
       //no R/T
+      LOGGER.trace("Folder \"" + name + "\" already exists.");
       folder = Factory.Folder.getInstance(os, null, parent.get_PathName() + "/" + name);
     }
     return folder;
+  }
+
+  public static Folder getFolderOrCreateIfNotExists(ObjectStore os, String parentFolderPath, String folderName) {
+    Folder parentFolder = getFolder(os, parentFolderPath);
+    return instantiateFolder(os, parentFolder, folderName);
   }
 }
 

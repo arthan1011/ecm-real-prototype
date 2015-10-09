@@ -9,6 +9,7 @@ import com.filenet.api.constants.TypeID;
 import com.filenet.api.core.ContentTransfer;
 import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
+import com.filenet.api.core.Folder;
 import com.filenet.api.meta.PropertyDescription;
 import com.filenet.api.util.Id;
 import org.apache.commons.codec.binary.Base64;
@@ -21,6 +22,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import ru.atc.sbrf.ecmcore.domain.*;
+import ru.atc.sbrf.ecmcore.util.CeHelper;
 import ru.atc.sbrf.ecmcore.util.EcmCoreFilenetHelper;
 
 import java.io.ByteArrayOutputStream;
@@ -33,12 +35,14 @@ import java.util.*;
  * Created by vkoba on 19.08.2015.
  */
 public class DocumentService {
+  public static final String REPORT_NAME = "Заключение";
+
   List<String> filteredPropertyName = Arrays.asList
-      ("РњРµС‚РєР° РїСЂРёРІСЏР·РєРё РєРѕРјРїРѕРЅРµРЅС‚Р°",
-          "РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РїРµСЂРµР°РґСЂРµСЃР°С†РёСЋ",
-          "РРјСЏ С…СЂР°РЅРёР»РёС‰Р° РѕР±СЉРµРєС‚РѕРІ С€Р°Р±Р»РѕРЅР° РІРІРѕРґР°",
-          "РќРѕРјРµСЂ Р·Р°РїСѓС‰РµРЅРЅРѕРіРѕ СЂР°Р±РѕС‡РµРіРѕ РїРѕС‚РѕРєР° С€Р°Р±Р»РѕРЅР° РІРІРѕРґР°",
-          "ID С€Р°Р±Р»РѕРЅР° РІРІРѕРґР°");
+      ("Метка привязки компонента",
+          "Игнорировать переадресацию",
+          "Имя хранилища объектов шаблона ввода",
+          "Номер запущенного рабочего потока шаблона ввода",
+          "ID шаблона ввода");
   Logger LOGGER = Logger.getLogger(DocumentService.class);
 
 
@@ -208,7 +212,37 @@ public class DocumentService {
     document.save(RefreshMode.NO_REFRESH);
   }
 
-  public String getBase64DocumentFromTemplate(Map<String, String> parameters) throws IOException {
+  public String createReportFromTemplate(Map<String, String> parameters) throws IOException {
+
+    Folder ordersFolder = CeHelper.getFolderOrCreateIfNotExists(
+            EcmCoreFilenetHelper.getCurrentObjectStore(),
+            parameters.get("folderPath"),
+            REPORT_NAME
+    );
+    ordersFolder.save(RefreshMode.REFRESH);
+
+    String reportContent = createReportContent(parameters);
+    FnDocument fnDocument = buildDocumentForCreation(reportContent, REPORT_NAME);
+    addDocument(fnDocument, ordersFolder.get_PathName());
+
+    return reportContent;
+  }
+
+  private FnDocument buildDocumentForCreation(String content, String title) {
+    FnContent fnContent = new FnContent(
+            content,
+            "application/pdf",
+            "Отчет1"
+    );
+
+    FnDocument fnDocument = new FnDocument();
+    fnDocument.setClassName("Document");
+    fnDocument.setContent(fnContent);
+    fnDocument.getProperties().add(new FnProperty("DocumentTitle", "STRING", title));
+    return fnDocument;
+  }
+
+  private String createReportContent(Map<String, String> parameters) throws IOException {
     PDDocument pdDocument = new PDDocument();
     PDPage page = new PDPage(PDRectangle.A4);
     PDRectangle rect = page.getMediaBox();
@@ -225,13 +259,13 @@ public class DocumentService {
     contentStream.beginText();
     contentStream.setFont(font, 32);
     contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-    contentStream.showText("Рћ Рў Р§ Р• Рў");
+    contentStream.showText("О Т Ч Е Т");
     contentStream.endText();
 
     contentStream.beginText();
     contentStream.setFont(font, 12);
     contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-    contentStream.showText("Р РµР·СѓР»СЊС‚Р°С‚ РїСЂРѕРІРµСЂРєРё:");
+    contentStream.showText("Результат проверки:");
     contentStream.endText();
 
     contentStream.beginText();
@@ -243,7 +277,7 @@ public class DocumentService {
     contentStream.beginText();
     contentStream.setFont(font, 12);
     contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-    contentStream.showText("Р’Р°С€ РєРѕРјРјРµРЅС‚Р°СЂРёР№:");
+    contentStream.showText("Ваш комментарий:");
     contentStream.endText();
 
     contentStream.beginText();

@@ -189,6 +189,10 @@ function Actions() {
               ]
           },
           {displayName: 'Комментарий', value: 'Коммент', type: 'STRING', name: 'comment'}
+        ],
+        [],
+        [
+          {'name': 'data-folderPath', 'value': getAbsoluteFolderPath(_getCurrentItems())}
         ]
     );
     $formContainer.append($from);
@@ -198,13 +202,21 @@ function Actions() {
       modal: true,
       buttons: {
         "OK": function() {
-          var message = (JSON.stringify(_jsonFromForm(this)));
+          var form = $(this).find('form');
+          var data = _jsonFromForm(form);
+          data.folderPath = form.attr('data-folderPath');
+          var message = JSON.stringify(data);
+          console.log(message);
           $.ajax({
             method: "POST",
             url: properties.host + "/webapi/templateReport",
             data: message,
             contentType: "application/json"
-          }).done(done.bind(this, {func: doneF.initTreetable})).fail(fail);
+          }).done(done.bind(this, {func:
+              function(data) {
+                doneF.initTreetable(data);
+                buildItemsTree();
+              }})).fail(fail);
 
           _closeDialog(this);
         }
@@ -212,8 +224,7 @@ function Actions() {
     });
   };
 
-  function _jsonFromForm(parent) {
-    var form = $(parent).find('form');
+  function _jsonFromForm(form) {
     var data = $(form).serializeArray();
     var values = {};
     $.each(data, function() {

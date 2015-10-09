@@ -3,7 +3,6 @@ package ru.atc.sbrf.ecmcore.webapi;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 import ru.atc.sbrf.ecmcore.domain.UserSession;
 import ru.atc.sbrf.ecmcore.message.Response;
 import ru.atc.sbrf.ecmcore.message.document.AddDocumentRequest;
@@ -18,7 +17,6 @@ import ru.atc.sbrf.ecmcore.service.UserSessionService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -207,7 +205,7 @@ public class WebApi {
   @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
   public Response createReportFromTemplate(Map<String, String> inputMap) {
     try {
-      String base64String = documentService.getBase64DocumentFromTemplate(inputMap);
+      String base64String = documentService.createReportFromTemplate(inputMap);
       return doResponse("createReportFromTemplate", String.format("params: %s", inputMap), base64String, null, null);
     } catch (Exception e) {
       return doResponse("createReportFromTemplate", String.format("params: %s", inputMap), null, "Ошибка создания отчета", e);
