@@ -163,6 +163,14 @@ function changeActionBarByPermissions(id, path) {
 
 }
 
+// TODO: Информация о том является ли выделенная папка клиентской и имеется ли право формировать отчет должна храниться в FileNet
+function isClientFolder() {
+  return $.inArray(
+          $('.treetable tr.selected').attr('data-tt-id'),
+          getProperties().clientFolders
+      ) !== -1;
+}
+
 function updateActionBar(actions) {
   var actionBar = $('#actionMenuBar');
   actionBar.find('button').each(function (pos, el) {
@@ -177,8 +185,9 @@ function updateActionBar(actions) {
 
   }
 
-  // 'REPORTS' button always must be active
-  actionBar.find('.REPORTS')[0].removeAttribute('disabled');
+  if (isClientFolder()) {
+    actionBar.find('.REPORTS')[0].removeAttribute('disabled');
+  }
 }
 
 function initTreetable() {
