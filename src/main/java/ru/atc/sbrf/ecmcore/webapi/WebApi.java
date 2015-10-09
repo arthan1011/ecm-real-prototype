@@ -205,14 +205,13 @@ public class WebApi {
   @Path("/templateReport")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
-  public Response createReportFromTemplate(String inputJson) throws IOException {
-
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, String> inputMap = mapper.readValue(inputJson, new TypeReference<HashMap<String, String>>() {});
-
-    String base64String = documentService.getBase64DocumentFromTemplate(inputMap);
-
-    return doResponse("creteReportFromTemplate", String.format("params: %s", inputJson), base64String, null, null);
+  public Response createReportFromTemplate(Map<String, String> inputMap) {
+    try {
+      String base64String = documentService.getBase64DocumentFromTemplate(inputMap);
+      return doResponse("createReportFromTemplate", String.format("params: %s", inputMap), base64String, null, null);
+    } catch (Exception e) {
+      return doResponse("createReportFromTemplate", String.format("params: %s", inputMap), null, "Ошибка создания отчета", e);
+    }
   }
 
 

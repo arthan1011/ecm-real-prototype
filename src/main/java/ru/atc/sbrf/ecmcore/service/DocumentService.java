@@ -208,7 +208,7 @@ public class DocumentService {
     document.save(RefreshMode.NO_REFRESH);
   }
 
-  public String getBase64DocumentFromTemplate(Map<String, String> parameters) {
+  public String getBase64DocumentFromTemplate(Map<String, String> parameters) throws IOException {
     PDDocument pdDocument = new PDDocument();
     PDPage page = new PDPage(PDRectangle.A4);
     PDRectangle rect = page.getMediaBox();
@@ -216,52 +216,47 @@ public class DocumentService {
 
     InputStream input = DocumentService.class.getResourceAsStream("/ArialRegular.ttf");
     ByteArrayOutputStream out;
-    try {
-      PDFont font = PDType0Font.load(pdDocument, input);
+    PDFont font = PDType0Font.load(pdDocument, input);
 
-      PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+    PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
 
-      int line = 1;
+    int line = 1;
 
-      contentStream.beginText();
-      contentStream.setFont(font, 32);
-      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-      contentStream.showText("О Т Ч Е Т");
-      contentStream.endText();
+    contentStream.beginText();
+    contentStream.setFont(font, 32);
+    contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+    contentStream.showText("О Т Ч Е Т");
+    contentStream.endText();
 
-      contentStream.beginText();
-      contentStream.setFont(font, 12);
-      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-      contentStream.showText("Результат проверки:");
-      contentStream.endText();
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+    contentStream.showText("Результат проверки:");
+    contentStream.endText();
 
-      contentStream.beginText();
-      contentStream.setFont(font, 12);
-      contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
-      contentStream.showText(parameters.get("checkResult"));
-      contentStream.endText();
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
+    contentStream.showText(parameters.get("checkResult"));
+    contentStream.endText();
 
-      contentStream.beginText();
-      contentStream.setFont(font, 12);
-      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
-      contentStream.showText("Ваш комментарий:");
-      contentStream.endText();
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+    contentStream.showText("Ваш комментарий:");
+    contentStream.endText();
 
-      contentStream.beginText();
-      contentStream.setFont(font, 12);
-      contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
-      contentStream.showText(parameters.get("comment"));
-      contentStream.endText();
+    contentStream.beginText();
+    contentStream.setFont(font, 12);
+    contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
+    contentStream.showText(parameters.get("comment"));
+    contentStream.endText();
 
-      contentStream.close();
+    contentStream.close();
 
-      out = new ByteArrayOutputStream();
-      pdDocument.save(out);
-      pdDocument.close();
-
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    out = new ByteArrayOutputStream();
+    pdDocument.save(out);
+    pdDocument.close();
 
     return Base64.encodeBase64String(out.toByteArray());
   }
