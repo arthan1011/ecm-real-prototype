@@ -176,6 +176,9 @@ function updateActionBar(actions) {
     }
 
   }
+
+  // 'REPORTS' button always must be active
+  actionBar.find('.REPORTS')[0].removeAttribute('disabled');
 }
 
 function initTreetable() {

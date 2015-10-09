@@ -1,15 +1,9 @@
 package ru.atc.sbrf.ecmcore.webapi;
 
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
-import org.apache.pdfbox.exceptions.COSVisitorException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import ru.atc.sbrf.ecmcore.domain.UserSession;
 import ru.atc.sbrf.ecmcore.message.Response;
 import ru.atc.sbrf.ecmcore.message.document.AddDocumentRequest;
@@ -23,8 +17,9 @@ import ru.atc.sbrf.ecmcore.service.UserSessionService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by vkoba on 19.08.2015.
@@ -206,32 +201,18 @@ public class WebApi {
     }
   }
 
-  @GET
-  @Path("/download")
-  public javax.ws.rs.core.Response getPDF() throws IOException, COSVisitorException {
+  @POST
+  @Path("/templateReport")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON + "; charset=UTF-8")
+  public Response createReportFromTemplate(String inputJson) throws IOException {
 
-    PDDocument pdDocument = new PDDocument();
-    PDPage page = new PDPage();
-    pdDocument.addPage(page);
+    ObjectMapper mapper = new ObjectMapper();
+    Map<String, String> inputMap = mapper.readValue(inputJson, new TypeReference<HashMap<String, String>>() {});
 
-    PDFont font = PDType1Font.HELVETICA_BOLD;
+    String base64String = documentService.getBase64DocumentFromTemplate(inputMap);
 
-    PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
-    contentStream.beginText();
-    contentStream.setFont( font, 12 );
-    contentStream.moveTextPositionByAmount( 100, 700 );
-    contentStream.drawString( "Hello World" );
-    contentStream.endText();
-    contentStream.close();
-
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-    pdDocument.save("new.pdf");
-    pdDocument.save(out);
-    pdDocument.close();
-
-    return javax.ws.rs.core.Response.ok(Base64.encodeBase64String(out.toByteArray()))
-            .build();
+    return doResponse("creteReportFromTemplate", String.format("params: %s", inputJson), base64String, null, null);
   }
 
 

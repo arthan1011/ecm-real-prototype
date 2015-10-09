@@ -175,24 +175,52 @@ function Actions() {
 
   this.REPORTS = function () {
     var $formContainer = $('#' + DIALOG_FORM);
-    var dialog = $formContainer.dialog({
+    var $from = _createForm(
+        [
+          {
+            displayName: 'Результат проверки',
+            type: 'SELECT',
+            name: 'checkResult',
+            defaultValue:
+              [
+                {name: 'Хорошо', displayName: 'Хорошо'},
+                {name: 'Удовлетворительно', displayName: 'Удовлетворительно'},
+                {name: 'Плохо', displayName: 'Плохо'}
+              ]
+          },
+          {displayName: 'Комментарий', value: 'Коммент', type: 'STRING', name: 'comment'}
+        ]
+    );
+    $formContainer.append($from);
+    $formContainer.dialog({
       title: 'Документ по шаблону',
-      width: '40%',
+      width: '30%',
       modal: true,
       buttons: {
-        "Download": function() {
+        "OK": function() {
+          var message = (JSON.stringify(_jsonFromForm(this)));
           $.ajax({
-            method: "GET",
-            url: properties.host + "/webapi/download"
-          }).success(function(data) {
-            alert(data);
-            var $embed = $('<embed>', {width: '100%', height: '100%', src: "data:application/pdf;base64," + data});
-            $formContainer.append($embed);
-          });
+            method: "POST",
+            url: properties.host + "/webapi/templateReport",
+            data: message,
+            contentType: "application/json"
+          }).done(done.bind(this, {func: doneF.initTreetable})).fail(fail);
+
+          _closeDialog(this);
         }
       }
     });
   };
+
+  function _jsonFromForm(parent) {
+    var form = $(parent).find('form');
+    var data = $(form).serializeArray();
+    var values = {};
+    $.each(data, function() {
+      values[this.name] = this.value;
+    });
+    return values;
+  }
 
   function _addDataToSerializedArray(form, data, attrName) {
 
@@ -370,6 +398,9 @@ function Actions() {
   }
 
   function _createForm(fields, additionalFields, formAttributes) {
+    console.log(fields);
+    console.log(additionalFields);
+    console.log(formAttributes);
     var form = $('<form>', {'class': 'properties-form', 'method': 'post'}),
       table = $('<table>', {'class': 'properties-table'});
 

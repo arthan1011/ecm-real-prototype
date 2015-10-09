@@ -14,10 +14,18 @@ import com.filenet.api.util.Id;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import ru.atc.sbrf.ecmcore.domain.*;
 import ru.atc.sbrf.ecmcore.util.EcmCoreFilenetHelper;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 
@@ -199,4 +207,63 @@ public class DocumentService {
     document.delete();
     document.save(RefreshMode.NO_REFRESH);
   }
+
+  public String getBase64DocumentFromTemplate(Map<String, String> parameters) {
+    PDDocument pdDocument = new PDDocument();
+    PDPage page = new PDPage(PDRectangle.A4);
+    PDRectangle rect = page.getMediaBox();
+    pdDocument.addPage(page);
+
+    InputStream input = DocumentService.class.getResourceAsStream("/ArialRegular.ttf");
+    ByteArrayOutputStream out;
+    try {
+      PDFont font = PDType0Font.load(pdDocument, input);
+
+      PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+
+      int line = 1;
+
+      contentStream.beginText();
+      contentStream.setFont(font, 32);
+      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+      contentStream.showText("О Т Ч Е Т");
+      contentStream.endText();
+
+      contentStream.beginText();
+      contentStream.setFont(font, 12);
+      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+      contentStream.showText("Результат проверки:");
+      contentStream.endText();
+
+      contentStream.beginText();
+      contentStream.setFont(font, 12);
+      contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
+      contentStream.showText(parameters.get("checkResult"));
+      contentStream.endText();
+
+      contentStream.beginText();
+      contentStream.setFont(font, 12);
+      contentStream.newLineAtOffset(100, rect.getHeight() - 50 * line++);
+      contentStream.showText("Ваш комментарий:");
+      contentStream.endText();
+
+      contentStream.beginText();
+      contentStream.setFont(font, 12);
+      contentStream.newLineAtOffset(150, rect.getHeight() - 50 * line++);
+      contentStream.showText(parameters.get("comment"));
+      contentStream.endText();
+
+      contentStream.close();
+
+      out = new ByteArrayOutputStream();
+      pdDocument.save(out);
+      pdDocument.close();
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    return Base64.encodeBase64String(out.toByteArray());
+  }
+
 }
